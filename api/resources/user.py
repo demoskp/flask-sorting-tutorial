@@ -28,7 +28,8 @@ class UserList(Resource):
                     field = getattr(User, sort[1:])
                     user_query = user_query.order_by(desc(field))
                 else:
-                    user_query = user_query.order_by(getattr(User, sort))
+                    field = getattr(User, sort)
+                    user_query = user_query.order_by(field)
 
         users = user_query.all()
         schema = UserSchema(many=True)
